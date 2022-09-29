@@ -3,10 +3,7 @@ var aPairList = []
 var aGeaterThanTenList = []
 var aNumberOfSequance = []
 
-document.getElementById('aArrayList').innerHTML = aNumberList
-
-
-
+// document.getElementById('aArrayList').innerHTML = aNumberList
 
 function getNumberListLength(aNumberList) {
     if (aNumberList.length > 6) {
@@ -56,7 +53,7 @@ function getreaterThanTen() {
 function getPair() {
 
     // aNumberList.sort();
-    console.log(aNumberList.sort())
+    // console.log(aNumberList.sort())
     let nPair = 0;
     let i = 0;
 
@@ -103,7 +100,7 @@ function getSequance() {
             if (aNumberList[i + 2] === number + 2) {
                 if (aNumberList[i + 3] === number + 3) {
                     if (aNumberList[i + 4] === number + 4) {
-                        console.log(`${aNumberList[i]},${aNumberList[i + 1]},${aNumberList[i + 2]},${aNumberList[i + 3]},${aNumberList[i + 4]}`)
+                        // console.log(`${aNumberList[i]},${aNumberList[i + 1]},${aNumberList[i + 2]},${aNumberList[i + 3]},${aNumberList[i + 4]}`)
                         aNumberOfSequance.push(aNumberList[i], aNumberList[i + 1], aNumberList[i + 2], aNumberList[i + 3], aNumberList[i + 4])
                         // console.log(aNumberOfSequance.sort())
                         nPair++
@@ -127,7 +124,13 @@ function getAdd() {
 
     var nTextNumber = document.getElementById('textbox').value
 
+
     aNumberList.push(parseInt(nTextNumber))
+
+    if(parseInt(nTextNumber) === null){
+        alert('Please Enter a value')
+        return false
+    }
 
     let nTotalSum = 0
     aNumberList.forEach(item => {
@@ -144,11 +147,11 @@ function getAdd() {
         nNumberOfSequance += item
     })
 
-    console.log(nPairTotal)
-    console.log(nNumberOfSequance)
+    //console.log(nPairTotal)
+    //console.log(nNumberOfSequance)
 
     document.getElementById('aArrayList').innerHTML = aNumberList
-    document.getElementById('totalOfNumber').innerHTML = nTotalSum;
+    document.getElementById('totalOfNumber').innerHTML = nTotalSum - (nPairTotal*2) - nNumberOfSequance;
 
     document.getElementById('inputForm').reset()
     document.getElementById('textbox').focus()
@@ -156,19 +159,21 @@ function getAdd() {
     getNumberListLength(aNumberList)
 
 }
-getNumberListLength(aNumberList)
+
 
 function getDelete() {
-    let nTextNumber = document.getElementById('textbox').value;
+    let nTextNumber = document.getElementById('textbox');
     let nTotal = document.getElementById('totalOfNumber').textContent
-    const i = aNumberList.indexOf(parseInt(nTextNumber));
+    let i = aNumberList.indexOf(parseInt(nTextNumber.value));
 
     if (i > -1) {
         aNumberList.splice(i, 1);
     }
 
+    getNumberListLength(aNumberList)
     document.getElementById('aArrayList').innerText = aNumberList;
-
-    document.getElementById('totalOfNumber').innerHTML = parseInt(nTotal) - nTextNumber
+    document.getElementById('inputForm').reset()
+    nTextNumber.focus()
+    document.getElementById('totalOfNumber').innerHTML = parseInt(nTotal) - nTextNumber.value
 
 }
