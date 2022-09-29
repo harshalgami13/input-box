@@ -1,9 +1,11 @@
-var aNumberList = [1,2,3,4,5,6,2,1]
+var aNumberList = []
 var aPairList = []
 var aGeaterThanTenList = []
 var aNumberOfSequance = []
 
 document.getElementById('aArrayList').innerHTML = aNumberList
+
+
 
 
 function getNumberListLength(aNumberList) {
@@ -155,3 +157,18 @@ function getAdd() {
 
 }
 getNumberListLength(aNumberList)
+
+function getDelete() {
+    let nTextNumber = document.getElementById('textbox').value;
+    let nTotal = document.getElementById('totalOfNumber').textContent
+    const i = aNumberList.indexOf(parseInt(nTextNumber));
+
+    if (i > -1) {
+        aNumberList.splice(i, 1);
+    }
+
+    document.getElementById('aArrayList').innerText = aNumberList;
+
+    document.getElementById('totalOfNumber').innerHTML = parseInt(nTotal) - nTextNumber
+
+}
