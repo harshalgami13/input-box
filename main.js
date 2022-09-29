@@ -124,10 +124,14 @@ function getAdd() {
 
     var nTextNumber = document.getElementById('textbox').value
 
+    if (isNaN(parseInt(nTextNumber))) {
+        alert("Kindly Enter A number")
+        return false
+    }
 
     aNumberList.push(parseInt(nTextNumber))
 
-    if(parseInt(nTextNumber) === null){
+    if (parseInt(nTextNumber) === null) {
         alert('Please Enter a value')
         return false
     }
@@ -151,7 +155,7 @@ function getAdd() {
     //console.log(nNumberOfSequance)
 
     document.getElementById('aArrayList').innerHTML = aNumberList
-    document.getElementById('totalOfNumber').innerHTML = nTotalSum - (nPairTotal*2) - nNumberOfSequance;
+    document.getElementById('totalOfNumber').innerHTML = nTotalSum - (nPairTotal * 2) - nNumberOfSequance;
 
     document.getElementById('inputForm').reset()
     document.getElementById('textbox').focus()
@@ -163,6 +167,12 @@ function getAdd() {
 
 function getDelete() {
     let nTextNumber = document.getElementById('textbox');
+
+    if (isNaN(parseInt(nTextNumber))) {
+        alert("Kindly Enter A number")
+        return false
+    }
+
     let nTotal = document.getElementById('totalOfNumber').textContent
     let i = aNumberList.indexOf(parseInt(nTextNumber.value));
 
