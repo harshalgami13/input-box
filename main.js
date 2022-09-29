@@ -168,22 +168,29 @@ function getAdd() {
 function getDelete() {
     let nTextNumber = document.getElementById('textbox');
 
-    if (isNaN(parseInt(nTextNumber))) {
+    if (nTextNumber.value == "") {
         alert("Kindly Enter A number")
         return false
     }
 
     let nTotal = document.getElementById('totalOfNumber').textContent
-    let i = aNumberList.indexOf(parseInt(nTextNumber.value));
 
-    if (i > -1) {
-        aNumberList.splice(i, 1);
+    let index = 0
+    let i=0
+    while (index < aNumberList.length) {
+        if (aNumberList[index] === parseInt(nTextNumber.value)) {
+            aNumberList.splice(index, 1);
+            i += parseInt(nTextNumber.value)
+        }
+        else {
+            ++index
+        }
     }
 
     getNumberListLength(aNumberList)
     document.getElementById('aArrayList').innerText = aNumberList;
     document.getElementById('inputForm').reset()
     nTextNumber.focus()
-    document.getElementById('totalOfNumber').innerHTML = parseInt(nTotal) - nTextNumber.value
+    document.getElementById('totalOfNumber').innerHTML = parseInt(nTotal) - i
 
 }
