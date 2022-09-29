@@ -173,20 +173,25 @@ function getDelete() {
         return false
     }
 
+    if (aNumberList.length === 0) {
+        alert('Kindly add a number before')
+        document.getElementById('inputForm').reset()
+        return false
+    }
     let nTotal = document.getElementById('totalOfNumber').textContent
 
     let index = 0
-    let i=0
+    let i = 0
     while (index < aNumberList.length) {
         if (aNumberList[index] === parseInt(nTextNumber.value)) {
             aNumberList.splice(index, 1);
             i += parseInt(nTextNumber.value)
         }
         else {
+            alert('the number is not available')
             ++index
         }
     }
-
     getNumberListLength(aNumberList)
     document.getElementById('aArrayList').innerText = aNumberList;
     document.getElementById('inputForm').reset()
